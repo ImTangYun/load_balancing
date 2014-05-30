@@ -1,17 +1,29 @@
 #include <unistd.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 #include <vector>
 #include "balance_writing.h"
-#define SERVER_NUM 10;
+#define SERVER_NUM 10
+#define MAX_REQ_ONCE 15
 using load_balance::LoadBalance;
 using std::vector;
 int main()
 {
 	LoadBalance l;
 	vector<int> server_resource_used;
-	for (int i = 0; i < 10; ++i) {
-		// server_resource_used.push_back(0);
+	for (int i = 0; i < SERVER_NUM; ++i) {
+		server_resource_used.push_back(0);
 	}
 	l.Init(server_resource_used);
+	srand(time(0));
+	for (int j = 0; j < 100; ++j) {
+		int req = rand() % MAX_REQ_ONCE;
+		l.Write(server_resource_used, req);
+	}
+	printf("after a time of running:\n");
+	for (int i = 0; i < SERVER_NUM; ++i) {
+		printf("%dth server resource used: %d\n", i, server_resource_used[i]);
+	}
 	return 0;
 }

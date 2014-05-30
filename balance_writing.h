@@ -17,6 +17,8 @@ public:
 	void Write(vector<int> &server_resource_used, int request);
 	void Init(const vector<int> &server_resource_used);
 private:
+	double rand_range(double front, double end);
+	void WriteOnce(vector<int> &server_resource_used);
 	void CalculateWeight(const vector<int> &server_resource_used);
 	map<double, int> weight_;
 };
