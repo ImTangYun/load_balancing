@@ -5,7 +5,7 @@
 using std::vector;
 namespace load_balance
 {
-LoadBalance::LoadBalance(vector<int> &server)
+LoadBalance::LoadBalance()
 {
 
 }
@@ -13,11 +13,15 @@ LoadBalance::~LoadBalance()
 {
 
 }
-void LoadBalance::Write(vector<int> &server, int request)
+void LoadBalance::Init(const vector<int> &server_resource_used)
+{
+	CalculateWeight(server_resource_used);
+}
+void LoadBalance::Write(vector<int> &server_resource_used, int request)
 {
 
 }
-void LoadBalance::CalculateWeight()
+void LoadBalance::CalculateWeight(const vector<int> &server_resource_used)
 {
 
 }

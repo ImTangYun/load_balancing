@@ -4,18 +4,21 @@
 #define LOAD_BALANCING_BALANCE_WRITING_H_
 
 #include <vector>
+#include <map>
 using std::vector;
+using std::map;
 namespace load_balance
 {
 class LoadBalance
 {
 public:
-	LoadBalance(vector<int> &server);
+	LoadBalance();
 	~LoadBalance();
-	void Write(vector<int> &server, int request);
+	void Write(vector<int> &server_resource_used, int request);
+	void Init(const vector<int> &server_resource_used);
 private:
-	void CalculateWeight();
-	vector<double> weight_;
+	void CalculateWeight(const vector<int> &server_resource_used);
+	map<double, int> weight_;
 };
 }
 #endif // LOAD_BALANCING_BALANCE_WRITING_H_
