@@ -20,7 +20,7 @@ private:
 	double rand_range(double front, double end);
 	void WriteOnce(vector<int> &server_resource_used);
 	void CalculateWeight(const vector<int> &server_resource_used);
-	map<double, int> weight_;
+	map<int, double> weight_;
 };
 }
 #endif // LOAD_BALANCING_BALANCE_WRITING_H_
