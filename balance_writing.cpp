@@ -33,6 +33,15 @@ void LoadBalance::Write(vector<int>
 	}
 	printf("write over!\n");
 }
+void LoadBalance::Delete(vector<int> &server_resource_used, int idx)
+{
+	if (server_resource_used[idx] > 0) {
+		--server_resource_used[idx];
+		CalculateWeight(server_resource_used);
+	} else { 
+		printf("this server is null, you can not delete from it!\n");
+	}
+}
 void LoadBalance::WriteOnce(vector<int> &server_resource_used)
 {
 	double total = 0;
@@ -43,6 +52,7 @@ void LoadBalance::WriteOnce(vector<int> &server_resource_used)
 	}
 	auto select = tmp.upper_bound(rand_range(0, total));
 	++server_resource_used[select->second];
+	CalculateWeight(server_resource_used);
 }
 double LoadBalance::rand_range(double front, double end)
 {
@@ -59,8 +69,9 @@ void LoadBalance::CalculateWeight(const vector<int>
 	weight_.clear();
 	for (auto iter = server_resource_used.begin();
 			iter != server_resource_used.end(); ++iter) {
-		weight_[i] = static_cast<double>(TOTAL_RESOURCE - *iter + 0.001);
+		double m = static_cast<double>(TOTAL_RESOURCE - *iter + 0.001);
+		weight_[i] = m * m;
 		++i;
 	}
 }
-}
+} // namespace load_balance

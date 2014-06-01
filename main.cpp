@@ -1,3 +1,5 @@
+// yuntang
+// file:main.cpp
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -15,9 +17,10 @@ int main()
 	for (int i = 0; i < SERVER_NUM; ++i) {
 		server_resource_used.push_back(0);
 	}
+	server_resource_used[5] = 100;
 	l.Init(server_resource_used);
 	srand(time(0));
-	for (int j = 0; j < 100; ++j) {
+	for (int j = 0; j < 1000; ++j) {
 		int req = rand() % MAX_REQ_ONCE;
 		l.Write(server_resource_used, req);
 	}
