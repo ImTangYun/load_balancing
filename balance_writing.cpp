@@ -13,11 +13,10 @@ namespace load_balance
 {
 LoadBalance::LoadBalance()
 {
-
+	srand(time(0));
 }
 LoadBalance::~LoadBalance()
 {
-	srand(time(0));
 }
 void LoadBalance::Init(const vector<int> 
 		&server_resource_used)
@@ -27,7 +26,7 @@ void LoadBalance::Init(const vector<int>
 void LoadBalance::Write(vector<int> 
 		&server_resource_used, int request)
 {
-	printf("Write.....\n");
+	printf("Writing.....\n");
 	for (int i = 0; i < request; ++i) {
 		WriteOnce(server_resource_used);
 	}
